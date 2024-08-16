@@ -25,22 +25,45 @@ const updateWorldSettings = () => {
 updateWorldSettings();
 
 const trackCenter = {x: worldWidth2, y: worldHeight2};
-const trackRadius = 100;
+const trackMinRadius = 100;
+const trackStep = 15;
 
 const ballRadius = 10;
-const ballSpeed = 0.02;
+const ballMinSpeed = Math.PI * 0.005;
+const ballSpeedStep = -Math.PI * 0.0001;
 
-const track = new Track(trackCenter, trackRadius);
-const ball = new Ball(track, ballRadius, ballSpeed);
+const soundFrequencies = [
+  1760, 1567.98, 1396.91, 1318.51, 1174.66, 1046.5, 987.77, 880,
+  783.99, 698.46, 659.25, 587.33, 523.25, 493.88, 440, 392, 349.23,
+  329.63, 293.66, 261.63
+];
+
+const tracks = [];
+const balls = [];
+const N = 20;
+
+for (let i = 0; i < N; i++) {
+  const ballSoundFrequency = soundFrequencies[i];
+  const track = new Track(trackCenter, trackMinRadius + i * trackStep);
+  const ball = new Ball(track, ballRadius, ballMinSpeed + i * ballSpeedStep, ballSoundFrequency);
+  tracks.push(track);
+  balls.push(ball);
+}
 
 
 const update = () => {
 
   ctx.clearRect(0, 0, worldWidth, worldHeight);
 
-  track.draw(ctx);
-  ball.move()
-  ball.draw(ctx);
+  for (const track of tracks) {
+    track.draw(ctx);
+  }
+  for (const ball of balls) {
+    ball.move()
+  }
+  for (const ball of balls) {
+    ball.draw(ctx);
+  }
 
   updateWorldSettings();
 
