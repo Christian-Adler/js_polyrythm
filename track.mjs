@@ -24,6 +24,7 @@ class Track {
       x: this.center.x + Math.cos(offset) * this.radius,
       y: this.center.y - Math.abs(Math.sin(offset) * this.radius),
       round: Math.floor(offset / this.period),
+      progress: (offset % this.period) / this.period
     };
   }
 }
