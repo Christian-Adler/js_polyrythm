@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, serif;
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+body {
+    background: black;
+    /*cursor: none;*/
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
