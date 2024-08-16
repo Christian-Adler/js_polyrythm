@@ -18,10 +18,21 @@ class Ball {
       this.round = res.round;
       playSound(this.soundFrequency);
     }
-    ctx.beginPath();
-    ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2, false);
-    ctx.strokeStyle = 'white';
-    ctx.stroke();
+    const fakeY = 2 * this.track.center.y - this.center.y;
+
+    if (fakeY > this.center.y) {
+
+
+      ctx.beginPath();
+      ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2, false);
+      ctx.strokeStyle = 'white';
+      ctx.stroke();
+    } else {
+      ctx.beginPath();
+      ctx.arc(this.center.x, fakeY, this.radius, 0, Math.PI * 2, false);
+      ctx.strokeStyle = 'white';
+      ctx.stroke();
+    }
   }
 
   move() {
