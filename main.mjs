@@ -28,7 +28,7 @@ const trackCenter = {x: worldWidth2, y: worldHeight2};
 const trackRadius = 100;
 
 const ballRadius = 10;
-const ballSpeed = 0.1;
+const ballSpeed = 0.02;
 
 const track = new Track(trackCenter, trackRadius);
 const ball = new Ball(track, ballRadius, ballSpeed);
