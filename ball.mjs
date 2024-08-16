@@ -7,14 +7,15 @@ class Ball {
     this.speed = speed;
     this.soundFrequency = soundFrequency;
     this.offset = 0;
-    this.direction = 1;
+    this.round = 0;
     this.center = {x: 0, y: 0};
   }
 
   draw(ctx) {
-    this.center = this.track.getPosition(this.offset);
-    if (this.center.y > this.track.center.y) {
-      this.direction *= -1;
+    const res = this.track.getPosition(this.offset);
+    this.center = {x: res.x, y: res.y};
+    if (res.round !== this.round) {
+      this.round = res.round;
       playSound(this.soundFrequency);
     }
     ctx.beginPath();
@@ -24,7 +25,7 @@ class Ball {
   }
 
   move() {
-    this.offset += this.speed * this.direction;
+    this.offset += this.speed;
   }
 }
 

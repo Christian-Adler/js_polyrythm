@@ -2,6 +2,7 @@ class Track {
   constructor(center, radius) {
     this.center = center;
     this.radius = radius;
+    this.period = Math.PI;
   }
 
   draw(ctx) {
@@ -19,7 +20,8 @@ class Track {
   getPosition(offset) {
     return {
       x: this.center.x + Math.cos(offset) * this.radius,
-      y: this.center.y - Math.sin(offset) * this.radius
+      y: this.center.y - Math.sin(offset) * this.radius,
+      round: Math.floor(offset / this.period),
     };
   }
 }
